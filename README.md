@@ -1,13 +1,26 @@
-# 가상환경 세팅
+## 환경
 
-- Hypervisor: VM WorkStation 17
-- Container Orchestration: k8s 1.18.4
+- Hypervisor: VirtualBox
 - OS: CentOS 7
 - CNI: Calico
 - VM Provisioning: Vagrant
-
-# VMware 플러그인 설치
+- Container Orchestration: k8s 1.18.4
+- Container Runtime: Docker
 
 ```shell
-vagrant plugin install vagrant-vmware-desktop
+vagrant up        # 생성
+vagrant halt      # 정지
+vagrant destory   # 삭제
+```
+
+## Node 접속
+
+```shell
+vagrant ssh {node-name}
+```
+
+## Kubernetes Cluster 구성 확인
+
+```shell
+kubectl get nodes
 ```
