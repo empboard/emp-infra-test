@@ -40,3 +40,7 @@ cat <<EOF > /etc/resolv.conf
 nameserver 1.1.1.1     # Cloudflare DNS
 nameserver 8.8.8.8     # Google DNS
 EOF
+
+# docker repo
+yum install yum-utils -y
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
