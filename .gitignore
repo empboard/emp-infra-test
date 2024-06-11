@@ -1,1 +1,3 @@
-vagrant/.*
+cluster/.*
+glusterfs/.*
+*/*.log
