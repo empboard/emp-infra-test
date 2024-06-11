@@ -39,6 +39,8 @@ $ kubectl apply -f /vagrant/sc/gfs-sc.yaml
 $ kubectl get sc
 ```
 
+![스크린샷 2024-06-12 001319](https://github.com/empboard/emp-infra-test/assets/95991654/181af121-b61b-4766-bcf1-ed20de683633)
+
 ---
 
 ### Connection Error 발생 시

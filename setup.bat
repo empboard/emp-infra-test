@@ -1,11 +1,11 @@
 @echo off
 
-echo "k8s cluster provisioning"
+echo [setup.bat] k8s cluster provisioning
 cd ./vm
 vagrant halt
 vagrant up
 
-echo "glusterfs cluster provisioning"
+echo [setup.bat] glusterfs cluster provisioning
 cd ../glusterfs
 vagrant up
 
