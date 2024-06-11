@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql # Cluster 내부 DNS에 등록되는 이름
+  labels:
+    app: mysql-sts
+spec:
+  ports:
+    - port: 3306
+      name: mysql
+  clusterIP: None # Headless 서비스 설정
+  selector:
+    app: mysql-sts # StatefulSet과 연결하는 Label
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  serviceName: mysql # 연계하는 서비스명 설정
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-sts
+  template:
+    metadata:
+      labels:
+        app: mysql-sts
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: qwerty
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: pvc
+              mountPath: /var/lib/mysql
+              subPath: data
+          livenessProbe:
+            exec:
+              command: ["mysqladmin", "-p$MYSQL_ROOT_PASSWORD", "ping"]
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+  volumeClaimTemplates:
+    - metadata:
+        name: pvc
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi

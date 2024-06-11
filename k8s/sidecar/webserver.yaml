@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+spec:
+  # 컨테이너 공유 볼륨 설정
+  volumes:
+    - name: contents-vol
+      emptyDir: {}
+
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: contents-vol
+          readOnly: true
+
+    - name: cloner
+      image: seungsu97/git-cloner:0.1
+      env:
+        - name: CONTENTS_SOURCE_URL
+          value: https://github.com/empboard/emp-front.git
+      volumeMounts:
+        - mountPath: /data
+          name: contents-vol

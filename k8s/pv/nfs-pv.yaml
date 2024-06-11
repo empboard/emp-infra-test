@@ -1,0 +1,41 @@
+## Master Node에 PV를 만들고, Worker Node에서 NFS로 접속
+# Persistent Volume 정의
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-1
+
+  # PVC에서 참조하는 이름 지정
+  labels:
+    name: pv-nfs-1
+
+spec:
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.10 # NFS 서버의 IP 주소 (Master Node)
+    path: /export # NFS 서버가 공개하는 경로
+---
+# PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-1
+spec:
+  # 스토리지 클래스가 없는 PV를 사용하는 경우 반드시 빈 문자열 지정
+  # 생략하면 default 스토리지 클래스가 사용됨
+  storageClassName: ""
+
+  # 접속할 PV의 metadata.labels 정보와 일치해야 함
+  selector:
+    matchLabels:
+      name: pv-nfs-1
+
+  resources:
+    requests:
+      storage: "100Mi"
+
+  accessModes:
+    - ReadWriteMany

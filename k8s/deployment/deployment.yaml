@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+spec:
+  replicas: 3
+
+  # Controller와 Pod를 일치시키기 위한 설정
+  # selector의 matchLabels 속성을 통해 컨트롤러를 Pod와 매치시킨다.
+  selector:
+    matchLabels:
+      app: web
+
+  template:
+    metadata:
+      labels:
+        app: web
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
