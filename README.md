@@ -10,14 +10,14 @@
 
 ---
 
-### 사전 환경 세팅 
-**Windows x64**
-1. Hyper-V 활성화
-Win + r -> appwiz.cpl -> Windows 기능 켜기/끄기 -> Hyper-V 활성화 
+### 사전 세팅 
 
-2. Virtual Box 및 Vagrant 설치
-Virtual Box: https://www.virtualbox.org/
-Vagrant: https://www.vagrantup.com/
+#### Windows x64 Hyper-V 활성화
+- Win + r -> appwiz.cpl -> Windows 기능 켜기/끄기 -> Hyper-V 활성화 
+
+#### Virtual Box 및 Vagrant 설치
+- Virtual Box: https://www.virtualbox.org/
+- Vagrant: https://www.vagrantup.com/
 
 ---
 
