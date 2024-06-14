@@ -10,6 +10,17 @@
 
 ---
 
+### 사전 환경 세팅 
+**Windows x64**
+1. Hyper-V 활성화
+Win + r -> appwiz.cpl -> Windows 기능 켜기/끄기 -> Hyper-V 활성화 
+
+2. Virtual Box 및 Vagrant 설치
+Virtual Box: https://www.virtualbox.org/
+Vagrant: https://www.vagrantup.com/
+
+---
+
 ### 전체 Cluster 구성도
 
 ## ![cluster](https://github.com/empboard/emp-infra-test/assets/95991654/819c27ec-2838-4ae1-8ec9-96da355e2543)
